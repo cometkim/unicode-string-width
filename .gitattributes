@@ -1,2 +1,5 @@
 .yarn/releases/*  binary
-*.res.js          linguist-generated
+
+*.res.js  linguist-generated
+*.res     linguist-language=ReScript
+*.resi    linguist-language=ReScript
