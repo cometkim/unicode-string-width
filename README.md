@@ -1,17 +1,25 @@
 # string-width
 
-[string-width] replacement demo with [unicode-segmenter]
-
-
 > [!WARNING]
 >
 > This is only for demo purposes, not a published package.
->
-> The `string-width` library has inconsistent behavior, incorrectly mixing character spacing with visual width. Consider using a Unicode-compliant alternative instead, such as a third-party library.
+
+This is a demo replacement for [string-width] using [unicode-segmenter/grapheme].
+
+## Comment on `string-width`
+
+If you rely on `string-width`, I strongly recommend reevaluating its behavior.
+
+- If the limitation comes from a storage or transport system, you should measure based on byte size.
+- If the limitation comes from a display system, you should measure based on visual segments (graphemes).
+
+The `string-width` library conflates these concepts due to incorrect assumptions about system constraints. As a result, any code that depends on `string-width` inherits its inconsistencies.
+
+Instead, consider using a Unicode-aware alternative such as `Intl.Segmenter` or `unicode-segmenter/grapheme`.
 
 ## LICENSE
 
 MIT
 
 [string-width]: https://github.com/sindresorhus/string-width
-[unicode-segmenter]: https://github.com/cometkim/unicode-segmenter
+[unicode-segmenter/grapheme]: https://github.com/cometkim/unicode-segmenter
