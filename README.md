@@ -2,7 +2,12 @@
 
 [string-width] replacement demo with [unicode-segmenter]
 
-Demo purpose, not a published package.
+
+> [!WARNING]
+>
+> This is only for demo purposes, not a published package.
+>
+> The `string-width` library has inconsistent behavior, incorrectly mixing character spacing with visual width. Consider using a Unicode-compliant alternative instead, such as a third-party library.
 
 ## LICENSE
 
