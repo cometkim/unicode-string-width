@@ -6,16 +6,20 @@
 
 This is a demo replacement for [string-width] using [unicode-segmenter/grapheme].
 
+This actually performs better than other libraries, especially on the non-alphabet characters.
+
 ## Comment on `string-width`
 
-If you rely on `string-width`, I strongly recommend reevaluating its behavior.
+`string-width` is basically for the TTY environment, not general purposes.
 
-- If the limitation comes from a storage or transport system, you should measure based on byte size.
-- If the limitation comes from a display system, you should measure based on visual segments (graphemes).
+It is implemented in a "best-effort" manner to support the widest possible range of terminal environments or typography system. It is very heuristic and there is no well-defined resolution.
 
-The `string-width` library conflates these concepts due to incorrect assumptions about system constraints. As a result, any code that depends on `string-width` inherits its inconsistencies.
+If you rely on `string-width` for some other purposes, I strongly recommend reevaluating its behavior.
 
-Instead, consider using a Unicode-aware alternative such as `Intl.Segmenter` or `unicode-segmenter/grapheme`.
+- If it is about a storage or transport system, you should measure it based on the byte size.
+- If it is about a display system, you should measure it based on the visual segments (aka graphemes).
+
+Consider using a Unicode-aware alternative such as `Intl.Segmenter` or `unicode-segmenter/grapheme`.
 
 ## LICENSE
 
