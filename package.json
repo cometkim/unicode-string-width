@@ -1,13 +1,13 @@
 {
   "name": "unicode-string-width",
   "dependencies": {
-    "unicode-segmenter": "^0.12.0"
+    "unicode-segmenter": "^0.13.0"
   },
   "devDependencies": {
     "@mitata/counters": "^0.0.8",
     "fast-string-width": "1.1.0",
     "mitata": "^1.0.34",
-    "rescript": "12.0.0-alpha.9",
+    "rescript": "^12.0.0-0",
     "string-width": "7.2.0"
   },
   "packageManager": "yarn@4.9.1"

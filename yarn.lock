@@ -56,16 +56,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rescript@npm:12.0.0-alpha.9":
-  version: 12.0.0-alpha.9
-  resolution: "rescript@npm:12.0.0-alpha.9"
+"rescript@npm:^12.0.0-0":
+  version: 12.0.0-alpha.12
+  resolution: "rescript@npm:12.0.0-alpha.12"
   bin:
-    bsc: cli/bsc
-    bstracing: lib/bstracing
-    rescript: cli/rescript
-    rescript-tools: cli/rescript-tools
-    rewatch: cli/rewatch
-  checksum: 10c0/62bd2f0b0debbaf1cc549011ccafd34e6c1436efddbc029a9f01c5d3e3bcc27dc24fbb5f8a1646f0a71f7bcd89c1ca34190a86593bf02922cd1c5e9eac316120
+    bsc: cli/bsc.js
+    bstracing: lib/bstracing.js
+    rescript: cli/rescript.js
+    rescript-tools: cli/rescript-tools.js
+    rewatch: cli/rewatch.js
+  checksum: 10c0/494a23c413905981fffc6230ad1b1019ed5fb1701a21f3eeb1526fb8cc78c511f82ac4edf151bbb881bef1a854895edd2085522ce51e11b359833ae743b7d9d8
   languageName: node
   linkType: hard
 
@@ -89,10 +89,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"unicode-segmenter@npm:^0.12.0":
-  version: 0.12.0
-  resolution: "unicode-segmenter@npm:0.12.0"
-  checksum: 10c0/efd33bd1854ed6d2c7ff3f668afd63359bf08be6a1afa9b81ebdcdc72ebb429a46b14ec121f06759e51498ba088a2d80fe44bd0a5373d542dc0be1bbafdd4b35
+"unicode-segmenter@npm:^0.13.0":
+  version: 0.13.0
+  resolution: "unicode-segmenter@npm:0.13.0"
+  checksum: 10c0/940f75e1c0ce84199391d964f3fb1eb9c472a2cf48f224c5f0c840b751bd3f3d8dbb4898fa089b989e07ccf445128dbbad889d92776eac91b58b39eb0c9a393e
   languageName: node
   linkType: hard
 
@@ -103,8 +103,8 @@ __metadata:
     "@mitata/counters": "npm:^0.0.8"
     fast-string-width: "npm:1.1.0"
     mitata: "npm:^1.0.34"
-    rescript: "npm:12.0.0-alpha.9"
+    rescript: "npm:^12.0.0-0"
     string-width: "npm:7.2.0"
-    unicode-segmenter: "npm:^0.12.0"
+    unicode-segmenter: "npm:^0.13.0"
   languageName: unknown
   linkType: soft
