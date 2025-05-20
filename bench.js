@@ -9,7 +9,7 @@ import {
 
 import stringWidth from 'string-width';
 import fastStringWidth from 'fast-string-width';
-import self from './src/index.js';
+import unicodeStringWidth from './src/index.js';
 
 let testcases = [
   [
@@ -30,8 +30,8 @@ for (const [title, input] of testcases) {
   group(title, () => {
     summary(() => {
       barplot(() => {
-        bench('self', () => {
-          do_not_optimize(self(input));
+        bench('unicode-string-width', () => {
+          do_not_optimize(unicodeStringWidth(input));
         }).baseline(true);
 
         bench('string-width', () => {

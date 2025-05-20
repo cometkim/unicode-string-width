@@ -1,4 +1,4 @@
-# string-width
+# unicode-string-width
 
 > [!WARNING]
 >

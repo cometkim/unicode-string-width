@@ -1,5 +1,6 @@
 {
   "name": "unicode-string-width",
+  "type": "module",
   "dependencies": {
     "unicode-segmenter": "^0.13.0"
   },

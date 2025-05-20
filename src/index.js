@@ -19,30 +19,29 @@ export default function stringWidth(string, options = {}) {
   let state = 0;
 
   let segments = graphemeSegments(string);
-  for (let { segment, _catBegin } of segments) {
-    if (_catBegin === GraphemeCategory.Control) {
-      state = ansiState(state, segment);
+  for (let { segment, _hd: cp, _catBegin: cat } of segments) {
+    if (cat === GraphemeCategory.Control) {
+      state = ansiState(state, cp);
       continue;
-    } else if (_catBegin === GraphemeCategory.Extend || _catBegin === GraphemeCategory.ZWJ) {
+    } else if (cat === GraphemeCategory.Extend || cat === GraphemeCategory.ZWJ) {
       continue;
-    } else if (_catBegin === GraphemeCategory.Extended_Pictographic) {
+    } else if (cat === GraphemeCategory.Extended_Pictographic) {
       if (segment.length === 1 && ambiguousIsNarrow) {
         width += 1;
       } else {
         width += 2;
       }
-    } else if (_catBegin === GraphemeCategory.Regional_Indicator) {
+    } else if (cat === GraphemeCategory.Regional_Indicator) {
       width += 2;
-    } else if (!(state === 0 || state === 4 || countAnsiEscapeCodes)) {
+    } else if (!(countAnsiEscapeCodes || state === 0 || state === 4)) {
       continue;
     } else {
-      let cp = segment.codePointAt(0);
       if (!isBMP(cp)) {
         width += 2;
       } else if (fullwidthPattern.test(segment)) {
         width += 2;
       } else {
-        state = ansiState(state, segment);
+        state = ansiState(state, cp);
         width += 1;
       }
     }

@@ -5,4 +5,4 @@ type state =
   | @as(3) AwaitST
   | @as(4) Finished
 
-let ansiState: (state, string) => state
+let ansiState: (state, char) => state

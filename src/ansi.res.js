@@ -2,137 +2,137 @@
 
 
 function isIntermediate(ch) {
-  switch (ch) {
-    case "#" :
-    case "(" :
-    case ")" :
-    case ";" :
-    case "?" :
-    case "[" :
-    case "]" :
-      return true;
-    default:
-      return false;
+  if (ch >= 60) {
+    if (ch > 93 || ch < 91) {
+      return ch === 63;
+    } else {
+      return ch !== 92;
+    }
+  } else if (ch >= 40) {
+    return ch > 58 || ch < 42;
+  } else {
+    return ch === 35;
   }
 }
 
 function isParameter(ch) {
-  switch (ch) {
-    case "0" :
-    case "1" :
-    case "2" :
-    case "3" :
-    case "4" :
-    case "5" :
-    case "6" :
-    case "7" :
-    case "8" :
-    case "9" :
-    case ";" :
-      return true;
-    default:
-      return false;
+  if (ch >= 58) {
+    return ch === 59;
+  } else {
+    return ch >= 48;
   }
 }
 
 function isFinal(ch) {
+  if (ch < 63) {
+    if (ch >= 58) {
+      return ch >= 60;
+    } else {
+      return ch >= 48;
+    }
+  }
+  if (ch < 81) {
+    return ch >= 65;
+  }
+  if (ch >= 127) {
+    return false;
+  }
   switch (ch) {
-    case "0" :
-    case "1" :
-    case "2" :
-    case "3" :
-    case "4" :
-    case "5" :
-    case "6" :
-    case "7" :
-    case "8" :
-    case "9" :
-    case "<" :
-    case "=" :
-    case ">" :
-    case "A" :
-    case "B" :
-    case "C" :
-    case "D" :
-    case "E" :
-    case "F" :
-    case "G" :
-    case "H" :
-    case "I" :
-    case "J" :
-    case "K" :
-    case "L" :
-    case "M" :
-    case "N" :
-    case "O" :
-    case "P" :
-    case "R" :
-    case "S" :
-    case "T" :
-    case "U" :
-    case "V" :
-    case "W" :
-    case "X" :
-    case "Y" :
-    case "Z" :
-    case "a" :
-    case "c" :
-    case "f" :
-    case "n" :
-    case "q" :
-    case "u" :
-    case "y" :
-    case "~" :
-      return true;
-    default:
+    case 81 :
+    case 91 :
+    case 92 :
+    case 93 :
+    case 94 :
+    case 95 :
+    case 96 :
+    case 98 :
+    case 100 :
+    case 101 :
+    case 103 :
+    case 104 :
+    case 105 :
+    case 106 :
+    case 107 :
+    case 108 :
+    case 109 :
+    case 111 :
+    case 112 :
+    case 114 :
+    case 115 :
+    case 116 :
+    case 118 :
+    case 119 :
+    case 120 :
+    case 122 :
+    case 123 :
+    case 124 :
+    case 125 :
       return false;
+    case 82 :
+    case 83 :
+    case 84 :
+    case 85 :
+    case 86 :
+    case 87 :
+    case 88 :
+    case 89 :
+    case 90 :
+    case 97 :
+    case 99 :
+    case 102 :
+    case 110 :
+    case 113 :
+    case 117 :
+    case 121 :
+    case 126 :
+      return true;
   }
 }
 
 function ansiState(state, ch) {
   switch (state) {
     case 1 :
-      switch (ch) {
-        case "\x1B" :
-          return 3;
-        case "\x07" :
-        case "\x9C" :
+      if (ch > 155 || ch < 8) {
+        if (!(ch > 156 || ch < 7)) {
           return 4;
-        default:
-          if (isIntermediate(ch) || isParameter(ch) || !isFinal(ch)) {
-            return 2;
-          } else {
-            return 4;
-          }
+        }
+        
+      } else if (ch === 27) {
+        return 3;
+      }
+      if (isIntermediate(ch) || isParameter(ch) || !isFinal(ch)) {
+        return 2;
+      } else {
+        return 4;
       }
     case 2 :
-      switch (ch) {
-        case "\x1B" :
-          return 3;
-        case "\x07" :
-        case "\x9C" :
+      if (ch > 155 || ch < 8) {
+        if ((ch > 156 || ch < 7) && !isFinal(ch)) {
+          return 2;
+        } else {
           return 4;
-        default:
-          if (isFinal(ch)) {
-            return 4;
-          } else {
-            return 2;
-          }
+        }
+      } else if (ch !== 27) {
+        if (isFinal(ch)) {
+          return 4;
+        } else {
+          return 2;
+        }
+      } else {
+        return 3;
       }
     case 3 :
-      if (ch === "\\") {
-        return 4;
-      } else {
+      if (ch !== 92) {
         return 2;
+      } else {
+        return 4;
       }
     case 0 :
     case 4 :
-      switch (ch) {
-        case "\x1B" :
-        case "\x9B" :
-          return 1;
-        default:
-          return 0;
+      if (ch !== 27 && ch !== 155) {
+        return 0;
+      } else {
+        return 1;
       }
   }
 }
