@@ -21,7 +21,7 @@ export default function stringWidth(string, options = {}) {
   let segments = graphemeSegments(string);
   for (let { segment, _hd: cp, _catBegin: cat } of segments) {
     if (cat === GraphemeCategory.Control) {
-      state = ansiState(state, cp);
+      state = ansiState(state, segment);
       continue;
     } else if (cat === GraphemeCategory.Extend || cat === GraphemeCategory.ZWJ) {
       continue;
@@ -41,7 +41,7 @@ export default function stringWidth(string, options = {}) {
       } else if (fullwidthPattern.test(segment)) {
         width += 2;
       } else {
-        state = ansiState(state, cp);
+        state = ansiState(state, segment);
         width += 1;
       }
     }
